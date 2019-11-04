@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -13,8 +13,8 @@ public class Character : MonoBehaviour
     private Vector2 curPos;
     public Vector3Int curCellPos;
     private Vector3Int memCellPos;
-
-    private IsometricCharacterRenderer isoRenderer;
+    private  List<Marks> marking = new List<Marks>();
+        private IsometricCharacterRenderer isoRenderer;
     private Vector2 mousePos;
     private Vector3Int selectedCell;
     private Vector3Int memSelectedCellDisp;
@@ -386,5 +386,16 @@ public class Character : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void Setmark(Marks item){
+        marking.Add(item);
+
+    }
+    public void isCombo(){
+        if 
+        foreach(Marks mark in marking){
+
+        }
     }
 }
