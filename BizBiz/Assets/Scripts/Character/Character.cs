@@ -387,15 +387,4 @@ public class Character : MonoBehaviour
         }
         return false;
     }
-
-    public void Setmark(Marks item){
-        marking.Add(item);
-
-    }
-    public void isCombo(){
-        if 
-        foreach(Marks mark in marking){
-
-        }
-    }
 }
