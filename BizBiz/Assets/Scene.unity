@@ -157,7 +157,7 @@ MonoBehaviour:
   powerpoint: 3
   movementpoint: 5
   turn: 1
-  isUsingSpell: 1
+  isUsingSpell: -1
   doubleClick: 0
 --- !u!1 &233307227
 GameObject:
@@ -930,7 +930,7 @@ MonoBehaviour:
   powerpoint: 3
   movementpoint: 3
   turn: 1
-  isUsingSpell: 0
+  isUsingSpell: -1
   doubleClick: 0
 --- !u!1001 &965503984
 PrefabInstance:

@@ -13,8 +13,7 @@ public class Character : MonoBehaviour
     private Vector2 curPos;
     public Vector3Int curCellPos;
     private Vector3Int memCellPos;
-    private  List<Marks> marking = new List<Marks>();
-        private IsometricCharacterRenderer isoRenderer;
+    private IsometricCharacterRenderer isoRenderer;
     private Vector2 mousePos;
     private Vector3Int selectedCell;
     private Vector3Int memSelectedCellDisp;
