@@ -42,7 +42,8 @@ public class Character : MonoBehaviour
     private bool turn;
     public bool Turn{get{return turn;}set{turn = value;}}
 
-    public int isUsingSpell = -1;
+    private int isUsingSpell = -1;
+    public int IsUsingSpell {set{isUsingSpell = value;}}
     private bool isWalking = false;
     private GridShape movPoss;
     private List<Vector3Int> targetPath = new List<Vector3Int>();
@@ -249,6 +250,10 @@ public class Character : MonoBehaviour
             }
             else {
                 impact = new List<Vector3Int>();
+                memSelectedCellSpell = new Vector3Int();
+                if(!obstruct.Contains(selectedCell - curCellPos)) {
+                    isUsingSpell = -1;
+                }
             }
         }
         
