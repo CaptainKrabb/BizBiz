@@ -8,7 +8,6 @@ public class Spells : MonoBehaviour
     private TilemapReferences grid;
     private GridLayout gridLayout;
     public enum AllSpells {Verglas,Iceberker,Stalackmite,Stalacktite};
-    public enum Marks{Water,Ice,Fire,Cloud}
     private AllSpells thisSpell;
     public AllSpells ThisSpell {get{return thisSpell;}set{thisSpell=value;}}
 
@@ -34,10 +33,11 @@ public class Spells : MonoBehaviour
         this._upgrade = upgrade;
         switch(spell) {
             case AllSpells.Verglas :
+                spellCost = 3;
                 this.spell_name= "Verglas";
                 this.spell_description= "";
                 rangeShape = new GridShape(1, 3 + upgrade, GridShape.Shape.Cross);
-                impactShape = new GridShape(0, 1 + upgrade, GridShape.Shape.X);
+                impactShape = new GridShape(0, 2 + upgrade, GridShape.Shape.T);
                 actions.Add(() => setLifepoint(-4 - upgrade));
                 actions.Add(() => setMP(-1 - ((int) upgrade/3)));
                 break;
@@ -45,13 +45,12 @@ public class Spells : MonoBehaviour
             case AllSpells.Iceberker:
                 spellCost = 3;
                 impactShape = new GridShape(0, 1, GridShape.Shape.Line);
-                rangeShape = new GridShape(1, 2, GridShape.Shape.Circle);
+                rangeShape = new GridShape(1, 2, GridShape.Shape.Cross);
                 this.spell_description = " soit applique dommage soit crée blocks";
                 this.spell_name  = "Icerberker";
                 
                 actions.Add(() => setLifepoint(Randomizer(-(30 + _upgrade * 20))));
                 actions.Add(setBlocks);
-                actions.Add(() =>setMark(Marks.Fire));
                 break;
             case AllSpells.Stalackmite:
                 impactShape = new GridShape(0,2,GridShape.Shape.Cross);
@@ -153,6 +152,19 @@ public class Spells : MonoBehaviour
         jj.AddRange(impact);
         grid.DecorationPositions = jj;
     }
+
+    // private void setRange(){// changement statut Portée.
+    //     List<Character> targets = occupied(this.target);
+    //     foreach ( Character target in  targets){
+    //           foreach(Spell spell in target.getSpell){
+    //               spell.rangeMax_range+= reduceRange;        
+    //           }
+    //           if (spell.rangeMax_range<0){
+    //                spell.rangeMax_range=0;
+    //           }
+    //     }
+    // }
+
     private int criticalDammage(int nbr){
         int dommagecritic = Mathf.RoundToInt(nbr + nbr * UnityEngine.Random.Range(0F,nbr));
         return dommagecritic;   
@@ -161,24 +173,24 @@ public class Spells : MonoBehaviour
         int dommage = nbr + Mathf.RoundToInt(UnityEngine.Random.Range(0F, (float) (nbr+1-0.65*nbr))) ;
         return dommage;
     }
-    private void setMark(Marks mark){
-            List<Character> targets = occupied(this.target);
-            foreach(Character target in targets){
-                target.doMark(mark) ; //ajoute le type de markage a liste des marques 
 
+    public List<Vector3Int> rightImpact(Vector3Int direction) {
+        if(direction.x != 0)
+            direction.x = direction.x / Mathf.Abs(direction.x); 
+        else
+            direction.y = direction.y / Mathf.Abs(direction.y);
+
+        if (this.impactShape.shape == GridShape.Shape.Line) {
+            this.impactShape = new GridShape(Mathf.Abs(direction.x), this.impactShape.rangeMax, this.impactShape.shape);
+        }
+        if (this.impactShape.shape == GridShape.Shape.T) {
+            int newRangeMin = GridShape.ways.IndexOf(direction);
+            this.impactShape = new GridShape(newRangeMin, this.impactShape.rangeMax, this.impactShape.shape);
+        }
+        return this.impactShape.vectors;
     }
-}
 
 }
 
-// si j'ai 2 marks qu'elle ne combote pas alors la premiere remplace la deuxieme, chaque mark a des effets 
 
 
-//is combbo renvois et effectue  un bool 
-
-//applystatut 
- //   switch(){
-   //     case FileStyleUriParser;..
-  //  }
-
-  

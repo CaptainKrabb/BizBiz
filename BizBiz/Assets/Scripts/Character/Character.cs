@@ -13,10 +13,6 @@ public class Character : MonoBehaviour
     private Vector2 curPos;
     public Vector3Int curCellPos;
     private Vector3Int memCellPos;
-
-    [SerializeField]
-    private  Spells.Marks[] marking = new Spells.Marks[1];
-   // private 
     private IsometricCharacterRenderer isoRenderer;
     private Vector2 mousePos;
     private Vector3Int selectedCell;
@@ -46,7 +42,8 @@ public class Character : MonoBehaviour
     private bool turn;
     public bool Turn{get{return turn;}set{turn = value;}}
 
-    public int isUsingSpell = -1;
+    private int isUsingSpell = -1;
+    public int IsUsingSpell {set{isUsingSpell = value;}}
     private bool isWalking = false;
     private GridShape movPoss;
     private List<Vector3Int> targetPath = new List<Vector3Int>();
@@ -66,6 +63,7 @@ public class Character : MonoBehaviour
         turnResp = GameObject.Find("TurnResp").GetComponent<TurnResp>() as TurnResp;
         lifepoint = 100;
         this.spells[0] = new Spells(Spells.AllSpells.Iceberker, 0 );
+        this.spells[1] = new Spells(Spells.AllSpells.Verglas, 0 );
         TilemapReferences grid = GameObject.Find("Grid - Level").GetComponent<TilemapReferences>() as TilemapReferences;
         tilemaps = grid.GroundTilemaps;
         gridLayout = grid.GridLayout;
@@ -89,11 +87,17 @@ public class Character : MonoBehaviour
         Spells spell = this.spells[index];
         spell = new Spells(spell.ThisSpell,spell._Upgrade + 1);
     }
+
+    public void setMovement(Vector2 coord,int mov){
+    }
+
     public void useSpells(int index, Vector3Int cell){
         spells[index].Use(cell);
         this.powerpoint -= spells[index].SpellCost;
    }
-        public void setSpell(int index,Spells sort){//index dans le tableau des sorts.
+ 
+   
+    public void setSpell(int index,Spells sort){//index dans le tableau des sorts.
         this.spells[index] = sort;
     }
     public Spells getSpell(int index){
@@ -230,14 +234,15 @@ public class Character : MonoBehaviour
                 groundTilemap.SetColor(curCellPos + v, Color.blue);
             
             foreach (Vector3Int v in obstruct)
-                groundTilemap.SetColor(curCellPos + v, new Color(0F,0.9F,0.9F, 1F));
+                groundTilemap.SetColor(curCellPos + v, Color.grey);
         }
         
         if (Input.GetMouseButtonDown(0)) {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             selectedCell = gridLayout.WorldToCell(mousePos) - new Vector3Int(1, 1, 0);
             if (rangeVectors.Contains(selectedCell - curCellPos)) {
-                impact = spell.ImpactShape.vectors;
+                Vector3Int direction = selectedCell - curCellPos;
+                impact = spell.rightImpact(direction);
                 if(memSelectedCellSpell == selectedCell) {
                     useSpells(index, selectedCell);
                 }
@@ -247,6 +252,10 @@ public class Character : MonoBehaviour
             }
             else {
                 impact = new List<Vector3Int>();
+                memSelectedCellSpell = new Vector3Int();
+                if(!obstruct.Contains(selectedCell - curCellPos)) {
+                    isUsingSpell = -1;
+                }
             }
         }
         
@@ -384,12 +393,4 @@ public class Character : MonoBehaviour
         }
         return false;
     }
-    public void doMark(Spells.Marks mark){
-        if (marking.Length<1){
-            marking[0]= mark;
-        }
-       
-    }
-
-  
 }
