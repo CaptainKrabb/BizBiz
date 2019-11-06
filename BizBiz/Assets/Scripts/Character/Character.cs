@@ -22,6 +22,7 @@ public class Character : MonoBehaviour
 
     private Rigidbody2D rbody;
 
+    [SerializeField]
     private Spells.Marks[] marks = new Spells.Marks[1];
 
 
