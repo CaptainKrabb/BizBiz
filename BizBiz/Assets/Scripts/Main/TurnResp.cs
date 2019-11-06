@@ -34,6 +34,7 @@ public class TurnResp : MonoBehaviour
             if (i == indexTurn) {
                 characters[i].Movementpoint = 3;
                 characters[i].Powerpoint = 3;
+                characters[i].IsUsingSpell = -1;
             }
             if (i == (indexTurn + 1) % characters.Count)
                 characters[i].Turn = true;

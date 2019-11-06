@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -63,6 +63,7 @@ public class Character : MonoBehaviour
         turnResp = GameObject.Find("TurnResp").GetComponent<TurnResp>() as TurnResp;
         lifepoint = 100;
         this.spells[0] = new Spells(Spells.AllSpells.Iceberker, 0 );
+        this.spells[1] = new Spells(Spells.AllSpells.Verglas, 0 );
         TilemapReferences grid = GameObject.Find("Grid - Level").GetComponent<TilemapReferences>() as TilemapReferences;
         tilemaps = grid.GroundTilemaps;
         gridLayout = grid.GridLayout;
@@ -233,14 +234,15 @@ public class Character : MonoBehaviour
                 groundTilemap.SetColor(curCellPos + v, Color.blue);
             
             foreach (Vector3Int v in obstruct)
-                groundTilemap.SetColor(curCellPos + v, new Color(0F,0.9F,0.9F, 1F));
+                groundTilemap.SetColor(curCellPos + v, Color.grey);
         }
         
         if (Input.GetMouseButtonDown(0)) {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             selectedCell = gridLayout.WorldToCell(mousePos) - new Vector3Int(1, 1, 0);
             if (rangeVectors.Contains(selectedCell - curCellPos)) {
-                impact = spell.ImpactShape.vectors;
+                Vector3Int direction = selectedCell - curCellPos;
+                impact = spell.rightImpact(direction);
                 if(memSelectedCellSpell == selectedCell) {
                     useSpells(index, selectedCell);
                 }
