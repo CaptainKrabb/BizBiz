@@ -6476,6 +6476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c18a111e553b1439807f8fd3c65449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+>>>>>>> parent of be189bd... Last Ver
+=======
 >>>>>>> parent of be189bd... Last Ver
 --- !u!1 &2051319341
 GameObject:
@@ -6569,7 +6572,10 @@ RectTransform:
   m_Children:
   - {fileID: 1817377813}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of be189bd... Last Ver
   - {fileID: 1093880033}
 >>>>>>> parent of be189bd... Last Ver
   m_Father: {fileID: 0}
