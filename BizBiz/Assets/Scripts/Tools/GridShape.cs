@@ -5,23 +5,16 @@ using System.Linq;
 
 public class GridShape
 {
-    public static List<Vector3Int> ways = new List<Vector3Int>{new Vector3Int(0,1,0), new Vector3Int(0,-1,0), new Vector3Int(1,0,0), new Vector3Int(-1,0,0)};
+    private List<Vector3Int> ways = new List<Vector3Int>{new Vector3Int(0,1,0), new Vector3Int(0,-1,0), new Vector3Int(1,0,0), new Vector3Int(-1,0,0)};
     public enum Shape {Circle,Cross,Line,T,X};
 
     public List<Vector3Int> vectors = new List<Vector3Int>();
-
-    public int rangeMin;
-    public int rangeMax;
-    public Shape shape;
 
     public GridShape() {
         this.vectors.Add(new Vector3Int());
     }
 
     public GridShape(int rangeMin, int rangeMax, Shape shape) {
-        this.rangeMax = rangeMax;
-        this.rangeMin = rangeMin;
-        this.shape = shape;
 
         Vector3Int v1;
         Vector3Int v2;
@@ -61,38 +54,38 @@ public class GridShape
             
             case Shape.Line : 
                 for (int i = 0; i <= rangeMax; i++) {
-                    v1 = new Vector3Int((rangeMin - 1) * i,rangeMin * i,0);
-                    v2 = new Vector3Int((rangeMin - 1) * -i,rangeMin * -i,0);
+                    v1 = new Vector3Int(rangeMin * i,(rangeMin - 1) * i,0);
+                    v2 = new Vector3Int(rangeMin * -i,(rangeMin - 1) * -i,0);
                     vectors.AddRange(new List<Vector3Int>{v1,v2});
                 }
                 break;
             
             case Shape.T :
-                float coef = 1.5F;
+
                 for (int i = 0; i < rangeMax; i++) {
                     switch (rangeMin) {
                         case 0 :
                             v1 = new Vector3Int(0,i,0); 
-                            v2 = new Vector3Int(Mathf.RoundToInt(i/coef),rangeMax-1,0); 
-                            v3 = new Vector3Int(Mathf.RoundToInt(-i/coef),rangeMax-1,0); 
+                            v2 = new Vector3Int((int) i/2,rangeMax-1,0); 
+                            v3 = new Vector3Int((int) (-i/2),rangeMax-1,0); 
                             vectors.AddRange(new List<Vector3Int>{v1,v2,v3});
                             break;
                         case 1 :
                             v1 = new Vector3Int(0,-i,0); 
-                            v2 = new Vector3Int(Mathf.RoundToInt(i/coef),-rangeMax+1,0); 
-                            v3 = new Vector3Int(Mathf.RoundToInt(-i/coef),-rangeMax+1,0); 
+                            v2 = new Vector3Int((int) i/2,-rangeMax+1,0); 
+                            v3 = new Vector3Int((int) (-i/2),-rangeMax+1,0); 
                             vectors.AddRange(new List<Vector3Int>{v1,v2,v3});
                             break;
                         case 2 :
                             v1 = new Vector3Int(i,0,0); 
-                            v2 = new Vector3Int(rangeMax-1,Mathf.RoundToInt(i/coef),0); 
-                            v3 = new Vector3Int(rangeMax-1,Mathf.RoundToInt(-i/coef),0); 
+                            v2 = new Vector3Int(rangeMax-1,(int) i/2,0); 
+                            v3 = new Vector3Int(rangeMax-1,(int) (-i/2),0); 
                             vectors.AddRange(new List<Vector3Int>{v1,v2,v3});
                             break;
                         case 3 : 
                             v1 = new Vector3Int(-i,0,0);
-                            v2 = new Vector3Int(-rangeMax+1,Mathf.RoundToInt(i/coef),0); 
-                            v3 = new Vector3Int(-rangeMax+1,Mathf.RoundToInt(-i/coef),0); 
+                            v2 = new Vector3Int(-rangeMax+1,(int) i/2,0); 
+                            v3 = new Vector3Int(-rangeMax+1,(int) (-i/2),0); 
                             vectors.AddRange(new List<Vector3Int>{v1,v2,v3});
                             break;
                     }
