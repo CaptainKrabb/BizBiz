@@ -228,7 +228,11 @@ MonoBehaviour:
   m_MinSize: {x: 483, y: 248}
   m_MaxSize: {x: 12008, y: 8048}
   vertical: 1
+<<<<<<< HEAD
   controlID: 108
+=======
+  controlID: 59
+>>>>>>> parent of be189bd... Last Ver
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -253,7 +257,11 @@ MonoBehaviour:
   m_MinSize: {x: 483, y: 248}
   m_MaxSize: {x: 12008, y: 8048}
   vertical: 0
+<<<<<<< HEAD
   controlID: 109
+=======
+  controlID: 60
+>>>>>>> parent of be189bd... Last Ver
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -278,7 +286,11 @@ MonoBehaviour:
   m_MinSize: {x: 206, y: 248}
   m_MaxSize: {x: 8006, y: 8048}
   vertical: 1
+<<<<<<< HEAD
   controlID: 110
+=======
+  controlID: 61
+>>>>>>> parent of be189bd... Last Ver
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -303,7 +315,11 @@ MonoBehaviour:
   m_MinSize: {x: 206, y: 124}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
+<<<<<<< HEAD
   controlID: 111
+=======
+  controlID: 62
+>>>>>>> parent of be189bd... Last Ver
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -522,7 +538,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d6fbffff
+      m_ExpandedIDs: b0fbffff7c380000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -763,10 +779,17 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 371}
     m_SelectedIDs: 480c0000
     m_LastClickedID: 3144
     m_ExpandedIDs: 000000003a0a0000ba0a0000380b00004a0b0000860b0000da0b0000060c0000680d0000ce0e0000140f0000360f000096120000a2130000ec130000a41600000c190000cc1a00000c39000000ca9a3b
+=======
+    scrollPos: {x: 0, y: 422}
+    m_SelectedIDs: 40350000
+    m_LastClickedID: 13632
+    m_ExpandedIDs: 00000000d22600004e270000cc270000e02700001c280000702800009e280000002a0000662b0000b02b0000d22b0000322f00003e3000008830000044330000b23500006e360000743700000c39000000ca9a3b
+>>>>>>> parent of be189bd... Last Ver
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -794,7 +817,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 000000003a0a0000ba0a0000380b00004a0b0000860b0000da0b0000060c0000680d0000ce0e0000140f0000360f000096120000a2130000ec130000a41600000c190000cc1a00000c390000
+=======
+    m_ExpandedIDs: 00000000d22600004e270000cc270000e02700001c280000702800009e280000002a0000662b0000b02b0000d22b0000322f00003e3000008830000044330000b23500006e360000743700000c390000
+>>>>>>> parent of be189bd... Last Ver
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -821,7 +848,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: a8340000a6300000240e0000565b0000f0770000e820000012610000026100008c540000fc4b000098210000525600006c590000bc1b0000c86b0400026c0400dc440200a62c1300862d13002623000002120100c6140100ec260100b0260000be4800005c3f0000d826000080860000dca900000caa00001ca500000a960000e07203006209000038a900005eb20000668b0400548b0400bc830000788b0400ae2a00009a2a0000c62900008e2900002e2a0000642a0000a0290000182c0000ca2f00007e670000f43300004a360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
