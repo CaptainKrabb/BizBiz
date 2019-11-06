@@ -8,10 +8,10 @@ public class Spells : MonoBehaviour
     private TilemapReferences grid;
     private GridLayout gridLayout;
     public enum AllSpells {Verglas,Iceberker,Stalackmite,Stalacktite};
-    private AllSpells thisSpell;
-    public AllSpells ThisSpell {get{return thisSpell;}set{thisSpell=value;}}
 
-    private string spell_name;
+    public enum Marks{Fire,Water,Smog,Ice,Toxic,Electricity}
+    private AllSpells thisSpell;
+    public AllSpells ThisSpell {get{return thisSpell;}set{thisSpell=value;}}    private string spell_name;
     public string Spell_Name {get{return spell_name;}set{spell_name=value;}}
     private string spell_description;
     public string Spell_Description {get{return spell_description;}set{spell_description=value;}}

@@ -22,6 +22,9 @@ public class Character : MonoBehaviour
 
     private Rigidbody2D rbody;
 
+    private Spells.Marks[] marks = new Spells.Marks[1]
+
+
     [SerializeField]
     private int lifepoint;
     public int Lifepoint {get {return lifepoint;} set{lifepoint = value ;} }
