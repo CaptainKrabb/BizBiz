@@ -144,63 +144,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void PlayerDisplacement() {
-        Vector2 mov = new Vector2();
-        impact = new List<Vector3Int>();
-        memSelectedCellSpell = new Vector3Int();
-
-        if (!isWalking && this.movementpoint > 0){
-            foreach (Tilemap groundTilemap in tilemaps) {
-                foreach (Vector3Int v in movPoss.vectors)
-                    groundTilemap.SetColor(curCellPos + v, Color.blue);
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0) && this.movementpoint > 0) {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            selectedCell = gridLayout.WorldToCell(mousePos) - new Vector3Int(1, 1, 0);
-            if (selectedCell == memSelectedCellDisp) {
-                doubleClick = true;
-            }
-            else {
-                memSelectedCellDisp = selectedCell;
-                doubleClick = false;
-                if (movPoss.vectors.Contains(selectedCell - curCellPos)) {
-                    targetPath = targetPaths[movPoss.vectors.IndexOf(selectedCell - curCellPos)];
-                }
-            }
-        }
-
-        foreach (Tilemap groundTilemap in tilemaps) {
-            foreach (Vector3Int v in targetPath) {
-                groundTilemap.SetColor(v, Color.green);
-            }
-        }
-        
-        if (targetPath.Count > 0 && doubleClick) {
-            isWalking = true;
-            targetCoord = gridLayout.CellToWorld(targetPath[0] + new Vector3Int(1, 1, 0)) + new Vector3(0, 0.3F, 0);
-            if (Mathf.Abs(targetCoord.x - curPos.x) + Mathf.Abs(targetCoord.y - curPos.y) >= 0.1F) {
-                mov.x = (targetCoord.x - curPos.x) / Mathf.Abs(targetCoord.x - curPos.x);
-                mov.y = ((targetCoord.y - curPos.y) / Mathf.Abs(targetCoord.y - curPos.y) * 0.5F);
-            }
-            else {
-                targetPath.Remove(targetPath[0]);
-                this.movementpoint--;
-            }     
-            Vector3 newPos = curPos + mov * Time.deltaTime;
-            isoRenderer.SetDirection(mov);
-            rbody.MovePosition(newPos);
-        }
-        
-        if ( wasUsingSpell || (this.movementpoint > 0 && targetPath.Count == 0 &&  memCellPos != curCellPos)) {
-            wasUsingSpell = false;
-            isWalking = false;
-            PathsGeneration();
-            memCellPos = curCellPos;
-        }
-    }
-
     private void PlayerUsingSpell(int index) {
         wasUsingSpell = true;
         targetPath = new List<Vector3Int>();
